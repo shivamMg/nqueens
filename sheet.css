@@ -1,0 +1,64 @@
+body {
+  font-size: 0;
+  line-height: 0;
+}
+
+#side-panel {
+  padding-left: 20px;
+  padding-top: 5px;
+  padding-right: 5px;
+}
+
+#board {
+  background-color: #fff2e6;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.ui.grid>.column:not(.row) {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+div#board .ui.grid .row {
+  padding: 0;
+}
+
+.queen {
+  z-index: 10;
+  position: relative;
+}
+
+div.square {
+  display: table-cell;
+  width: 70px;
+  height: 70px;
+  background-color: red;
+  border-radius: 1px;
+  padding: 10px;
+  position: relative;
+}
+
+.even-row {
+  min-width: 560px;
+}
+
+.odd-row {
+  min-width: 560px;
+}
+
+.odd-row .square:nth-child(even) {
+  background-color: #ffca99;
+}
+
+.odd-row .square:nth-child(odd) {
+  background-color: #b35600;
+}
+
+.even-row .square:nth-child(even) {
+  background-color: #b35600;
+}
+
+.even-row .square:nth-child(odd) {
+  background-color: #ffca99;
+}

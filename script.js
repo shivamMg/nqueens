@@ -1,10 +1,3 @@
-var DARK_SQUARE = "rgb(179, 86, 0)"; // #b35600
-var LIGHT_SQUARE = "rgb(255, 202, 153)"; // #ffca99
-//var OVERLAY_DARK_SQUARE = "rgb(128, 62, 0)"; // #803e00
-//var OVERLAY_LIGHT_SQUARE = "rgb(255, 215, 179)"; // #ffb066
-var OVERLAY_DARK_SQUARE = "rgb(0, 0, 0)"; // #803e00
-var OVERLAY_LIGHT_SQUARE = "rgb(255, 255, 255)"; // #ffb066
-
 var Mug = {
   x: null,
   y: null
@@ -23,48 +16,40 @@ for (i = 0; i < 8; i++) {
   }
 }
 
-/* Highlights/unhighlights a coordinate (x, y) */
-function highlightCoord(x, y) {
+function highlightSquare(x, y) {
   var coords = String(x+1) + "-" + String(y+1);
   var ele = document.querySelectorAll("[data-value='" + coords + "']")[0];
-  var eleBgColor = getComputedStyle(ele, null).getPropertyValue("background-color");
+  /* If Queen at (x, y), mark it as threatened square */
   if (Board[x][y] == 1) {
-    ele.style.backgroundColor = "rgb(255, 0, 0)";
+    ele.className = "square threatened-square";
   } else {
     if ((x + y) % 2 === 0) {
-      ele.style.backgroundColor = OVERLAY_LIGHT_SQUARE;
+      ele.className = "square overlay-light-square";
     } else {
-      ele.style.backgroundColor = OVERLAY_DARK_SQUARE;
+      ele.className = "square overlay-dark-square";
     }
   }
 }
 
-function unhighlightCoord(x, y) {
+function unhighlightSquare(x, y) {
   var coords = String(x+1) + "-" + String(y+1);
   var ele = document.querySelectorAll("[data-value='" + coords + "']")[0];
-  var eleBgColor = getComputedStyle(ele, null).getPropertyValue("background-color");
-  if ((x + y) % 2 === 0) {
-    ele.style.backgroundColor = LIGHT_SQUARE;
-  } else {
-    ele.style.backgroundColor = DARK_SQUARE;
-  }
+  ele.className = "square";
 }
 
-/* Highlights/Unhighlights all squares threatened by
- * a Queen at (i, j)
- */
+/* Highlights all squares threatened by a Queen at (i, j) on `Board` */
 function highlightSquares(i, j) {
   /* Highlight Row */
   for (p = 0; p < 8; p++) {
     if (p != j) {
-      highlightCoord(i, p);
-    } else {console.log(i, p);}
+      highlightSquare(i, p);
+    }
   }
   /* Highlight Column */
   for (p = 0; p < 8; p++) {
     if (p != i) {
-      highlightCoord(p, j);
-    } else {console.log(p, j);}
+      highlightSquare(p, j);
+    }
   }
   /* Highlight Forward Diagonal */
   var x, y;
@@ -79,8 +64,8 @@ function highlightSquares(i, j) {
   var a = x, b = y;
   while (x <= b) {
     if (x != i && y != j) {
-      highlightCoord(x, y);
-    }  else {console.log(x, y);}
+      highlightSquare(x, y);
+    }
     x += 1;
     y -= 1;
   }
@@ -94,8 +79,8 @@ function highlightSquares(i, j) {
   }
   while (x < 8 && y < 8) {
     if (x != i && y != j) {
-      highlightCoord(x, y);
-    }  else {console.log(x, y);}
+      highlightSquare(x, y);
+    }
     x += 1;
     y += 1;
   }
@@ -104,12 +89,13 @@ function highlightSquares(i, j) {
 function unhighlightBoard() {
   for (i = 0; i < 8; i++) {
     for (j = 0; j < 8; j++) {
-      unhighlightCoord(i, j);
+      unhighlightSquare(i, j);
     }
   }
 }
 
-function loopOverBoard() {
+/* Highlight squares threatened by all the Queens on board */
+function highlightBoard() {
   for (i = 0; i < 8; i++) {
     for (j = 0; j < 8; j++) {
       if (Board[i][j] == 1) {
@@ -122,19 +108,15 @@ function loopOverBoard() {
 var dragStart = function (event) {
   event.dataTransfer.setData("text", event.target.id);
 
-  /* If queen wasn't dropped before, set Mug
-   * values to null.
-   */
+  /* If queen wasn't dropped before, set Mug values to null */
   if (!Dropped) {
     Mug.x = null;
     Mug.y = null;
   }
 
-  /* Store data-value of square if queen is being dragged
-   * from a square.
-   */
+  /* Store data-value of square if queen is being dragged from a square */
   var parentEle = event.target.parentElement;
-  if (parentEle.className == "square") {
+  if (parentEle.className.includes("square")) {
     var coords = parentEle.dataset.value.split("-");
     var x = parseInt(coords[0]) - 1;
     var y = parseInt(coords[1]) - 1;
@@ -179,7 +161,7 @@ var drop = function (event) {
     Mug.x = null;
     Mug.y = null;
   }
-  loopOverBoard();
+  highlightBoard();
 };
 
 /* Add Event Listeners to Queens */

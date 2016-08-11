@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>N Queen Problem</title>
+  <title>N Queens Problem</title>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
   <link rel="stylesheet" type="text/css" href="sheet.css">
 </head>
@@ -10,15 +10,24 @@
     <div class="four wide column">
       <div id="side-panel">
         <div class="ui segment">
-          <h3 class="ui header grey">N Queen Problem</h3>
-          <h4 class="ui header black">8 Queens</h4>
+          <h3 class="ui header black" style="margin-bottom: 0;">The NQueens Problem</h3>
+          <p>
+            NQueens problem requires you to place N Queens on an NxN chess board without any of them threatening each other.<br>
+            You can read more at <a href="https://developers.google.com/optimization/puzzles/queens">Google Developers</a> and <a href="https://en.wikipedia.org/wiki/Eight_queens_puzzle">Wikipedia</a>.
+          </p>
+          <h3 class="ui header grey" style="margin-top: 0;margin-bottom: 0;">for N = 8</h3>
+          <p>
+            For 8-Queens problem, you need to do the same with 8 Queens and an 8x8 chess board. There are
+            <strong title="Four Billion, Four Hundred Twenty-Six Million, One Hundred Sixty-Five Thousand, Three Hundred Sixty-Eight">4,426,165,368</strong> (<sup>64</sup>C<sub>8</sub>)
+            ways to place all the queens on the board, with 92 of them being the correct solutions.
+          </p>
         </div>
         <div class="ui segment padded">
         <!--
           div.ui.two.column.grid>(div.column>(div>img#queen$.queen[src=white-queen.svg][alt=Q][width=50][height=50][draggable=true])*4)
         -->
 
-          <div class="ui two column grid">
+          <div class="ui two column center aligned grid">
             <div class="column">
               <div><img id="queen1" src="white-queen.svg" alt="Q" class="queen" width="50" height="50" draggable="true"></div>
               <div><img id="queen2" src="white-queen.svg" alt="Q" class="queen" width="50" height="50" draggable="true"></div>

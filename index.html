@@ -19,28 +19,43 @@
           <p>
             For 8-Queens problem, you need to do the same with 8 Queens and an 8x8 chess board. There are
             <strong title="Four Billion, Four Hundred Twenty-Six Million, One Hundred Sixty-Five Thousand, Three Hundred Sixty-Eight">4,426,165,368</strong> (<sup>64</sup>C<sub>8</sub>)
-            ways to place all the queens on the board, with 92 of them being the correct solutions.
+            ways to place all the queens on the board, with <strong>92</strong> of them being the correct solutions.
           </p>
         </div>
         <div class="ui segment padded">
         <!--
           div.ui.two.column.grid>(div.column>(div>img#queen$.queen[src=white-queen.svg][alt=Q][width=50][height=50][draggable=true])*4)
-        -->
 
-          <div class="ui two column center aligned grid">
-            <div class="column">
-              <div><img id="queen1" src="white-queen.svg" alt="Q" class="queen" width="50" height="50" draggable="true"></div>
-              <div><img id="queen2" src="white-queen.svg" alt="Q" class="queen" width="50" height="50" draggable="true"></div>
-              <div><img id="queen3" src="white-queen.svg" alt="Q" class="queen" width="50" height="50" draggable="true"></div>
-              <div><img id="queen4" src="white-queen.svg" alt="Q" class="queen" width="50" height="50" draggable="true"></div>
-            </div>
-            <div class="column">
-              <div><img id="queen5" src="white-queen.svg" alt="Q" class="queen" width="50" height="50" draggable="true"></div>
-              <div><img id="queen6" src="white-queen.svg" alt="Q" class="queen" width="50" height="50" draggable="true"></div>
-              <div><img id="queen7" src="white-queen.svg" alt="Q" class="queen" width="50" height="50" draggable="true"></div>
-              <div><img id="queen8" src="white-queen.svg" alt="Q" class="queen" width="50" height="50" draggable="true"></div>
+          div.ui.two.column.center.aligned.grid>(div.column[style="padding:0;">div.throne>img.queen#queen$[src=white-queen.svg][alt=Q][draggable=true])*8
+        -->
+        <div class="ui two column center aligned grid">
+          <div class="column" style="padding:0;">
+            <div class="throne">
+              <img src="white-queen.svg" alt="Q" class="queen" id="queen1" draggable="true">
             </div>
           </div>
+          <div class="column" style="padding:0;">
+            <div class="throne"><img src="white-queen.svg" alt="Q" class="queen" id="queen2" draggable="true"></div>
+          </div>
+          <div class="column" style="padding:0;">
+            <div class="throne"><img src="white-queen.svg" alt="Q" class="queen" id="queen3" draggable="true"></div>
+          </div>
+          <div class="column" style="padding:0;">
+            <div class="throne"><img src="white-queen.svg" alt="Q" class="queen" id="queen4" draggable="true"></div>
+          </div>
+          <div class="column" style="padding:0;">
+            <div class="throne"><img src="white-queen.svg" alt="Q" class="queen" id="queen5" draggable="true"></div>
+          </div>
+          <div class="column" style="padding:0;">
+            <div class="throne"><img src="white-queen.svg" alt="Q" class="queen" id="queen6" draggable="true"></div>
+          </div>
+          <div class="column" style="padding:0;">
+            <div class="throne"><img src="white-queen.svg" alt="Q" class="queen" id="queen7" draggable="true"></div>
+          </div>
+          <div class="column" style="padding:0;">
+            <div class="throne"><img src="white-queen.svg" alt="Q" class="queen" id="queen8" draggable="true"></div>
+          </div>
+        </div>
         </div>
       </div>
     </div>

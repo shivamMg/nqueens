@@ -1,8 +1,13 @@
+/* If set, (x, y) is the coordinate square the Queen
+ * was dragged from.
+ */
 var Mug = {
   x: null,
-  y: null
+  y: null,
+  isSet: function() {
+    return this.x !== null && this.y !== null;
+  }
 };
-var Dropped = false;
 var Board = new Array(8);
 
 for (i = 0; i < 8; i++) {
@@ -105,23 +110,37 @@ function highlightBoard() {
   }
 }
 
-var dragStart = function (event) {
-  event.dataTransfer.setData("text", event.target.id);
+function corvoAttano() {
+  /* Transfer Data to another element */
+  var data = event.dataTransfer.getData("text");
+  var ele = document.getElementById(data);
+  event.target.appendChild(ele);
 
-  /* If queen wasn't dropped before, set Mug values to null */
-  if (!Dropped) {
+  /* Unset value in Board for the dragStart square */
+  if (Mug.isSet()) {
+    Board[Mug.x][Mug.y] = 0;
+    unhighlightBoard();
     Mug.x = null;
     Mug.y = null;
   }
+  highlightBoard();
+}
 
-  /* Store data-value of square if queen is being dragged from a square */
+var dragStart = function (event) {
+  event.dataTransfer.setData("text", event.target.id);
+
   var parentEle = event.target.parentElement;
+
+  /* Store data-value of `square` if queen is being dragged from a square */
   if (parentEle.className.includes("square")) {
     var coords = parentEle.dataset.value.split("-");
     var x = parseInt(coords[0]) - 1;
     var y = parseInt(coords[1]) - 1;
     Mug.x = x;
     Mug.y = y;
+  } else {
+    Mug.x = null;
+    Mug.y = null;
   }
 };
 
@@ -133,7 +152,7 @@ var dragOver = function (event) {
   event.preventDefault();
 };
 
-var drop = function (event) {
+var squareDrop = function (event) {
   event.preventDefault();
 
   /* Calculate coordinates of drop square */
@@ -146,23 +165,24 @@ var drop = function (event) {
     return false;
   }
 
-  var data = event.dataTransfer.getData("text");
-  var ele = document.getElementById(data);
-  event.target.appendChild(ele);
-
-  /* Set Dropped equals true */
-  Dropped = true;
   /* Set value in Board for the current square */
   Board[x][y] = 1;
-  /* Unset value in Board for the dragStart square */
-  if (Mug.x !== null && Mug.y !== null) {
-    Board[Mug.x][Mug.y] = 0;
-    unhighlightBoard();
-    Mug.x = null;
-    Mug.y = null;
-  }
-  highlightBoard();
+
+  corvoAttano();
 };
+
+var throneDrop = function(event) {
+  event.preventDefault();
+  corvoAttano();
+};
+
+/* Add Event Listeners to Thrones */
+var throneList = document.getElementsByClassName("throne");
+
+for (i = 0; i < throneList.length; i++) {
+  throneList[i].addEventListener("dragover", dragOver, false);
+  throneList[i].addEventListener("drop", throneDrop, false);
+}
 
 /* Add Event Listeners to Queens */
 var queenList = document.getElementsByClassName("queen");
@@ -176,5 +196,5 @@ var squareList = document.getElementsByClassName("square");
 
 for (i = 0; i < squareList.length; i++) {
   squareList[i].addEventListener("dragover", dragOver, false);
-  squareList[i].addEventListener("drop", drop, false);
+  squareList[i].addEventListener("drop", squareDrop, false);
 }

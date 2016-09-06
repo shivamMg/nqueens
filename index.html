@@ -4,8 +4,45 @@
   <title>N Queens Problem</title>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
   <link rel="stylesheet" type="text/css" href="sheet.css">
+
+  <meta property="og:title" content="NQueens Problem">
+  <meta property="og:site_name" content="NQueens">
+  <meta property="og:url" content="https://shivammg.github.io/nqueens">
+  <meta property="og:description" content="Interactive NQueens problem Solver">
+  <meta property="og:image" content="http://shivammg.github.io/nqueens/solution.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="570">
+  <meta property="og:image:height" content="568">
+  <meta property="fb:app_id" content="1768029560146892">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@shivammamgain">
+  <meta name="twitter:creator" content="@shivammamgain">
+  <meta name="twitter:title" content="NQueens Problem">
+  <meta name="twitter:description" content="Interactive NQueens problem Solver">
+  <meta name="twitter:image" content="http://shivammg.github.io/nqueens/solution.png">
 </head>
 <body>
+<!-- Facebook SDK -->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1768029560146892',
+      xfbml      : true,
+      version    : 'v2.7'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
   <div class="ui grid">
     <div class="four wide column">
       <div id="side-panel">
@@ -28,7 +65,7 @@
 
           div.ui.two.column.center.aligned.grid>(div.column[style="padding:0;">div.throne>img.queen#queen$[src=white-queen.svg][alt=Q][draggable=true])*8
         -->
-        <div class="ui two column center aligned grid">
+        <div class="ui four column center aligned grid">
           <div class="column" style="padding:0;">
             <div class="throne">
               <img src="white-queen.svg" alt="Q" class="queen" id="queen1" draggable="true">
@@ -57,9 +94,14 @@
           </div>
         </div>
         </div>
+        <div class="ui segment">
+          <p>
+            This web app provide helpers to solve the problem. Whenever a Queen is put on the board, it threatens some squares, since it can move in any possible direction (vertically, horizontally, diagonally) at any length. All the light and dark threatened squares are showed with white and black colors respectively. Any non-threatened square retains the initial colors. <strong>Solve by putting all Queens on board without them threatening each other.</strong>
+          </p>
+        </div>
       </div>
     </div>
-    <div class="twelve wide column">
+    <div class="twelve wide column" style="background-color: #fff2e6;">
       <div id="board">
         <div class="ui grid centered">
         <!-- Board Grid -->

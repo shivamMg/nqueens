@@ -8,6 +8,7 @@ var Mug = {
     return this.x !== null && this.y !== null;
   }
 };
+var threatened = false;
 var Board = new Array(8);
 
 for (i = 0; i < 8; i++) {
@@ -26,6 +27,7 @@ function highlightSquare(x, y) {
   var ele = document.querySelectorAll("[data-value='" + coords + "']")[0];
   /* If Queen at (x, y), mark it as threatened square */
   if (Board[x][y] == 1) {
+    threatened = true;
     ele.className = "square threatened-square";
   } else {
     if ((x + y) % 2 === 0) {
@@ -101,12 +103,18 @@ function unhighlightBoard() {
 
 /* Highlight squares threatened by all the Queens on board */
 function highlightBoard() {
+  var queenCount = 0;
   for (i = 0; i < 8; i++) {
     for (j = 0; j < 8; j++) {
       if (Board[i][j] == 1) {
         highlightSquares(i, j);
+        queenCount += 1;
       }
     }
+  }
+
+  if (queenCount == 8 && !threatened) {
+    alert("Voila! You did it!");
   }
 }
 
@@ -154,6 +162,7 @@ var dragOver = function (event) {
 
 var squareDrop = function (event) {
   event.preventDefault();
+  threatened = false;
 
   /* Calculate coordinates of drop square */
   var coords = event.target.dataset.value.split("-");

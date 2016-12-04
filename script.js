@@ -110,7 +110,7 @@ function highlightBoard() {
   }
 }
 
-function corvoAttano() {
+function corvoAttano(event) {
   /* Transfer Data to another element */
   var data = event.dataTransfer.getData("text");
   var ele = document.getElementById(data);
@@ -168,12 +168,12 @@ var squareDrop = function (event) {
   /* Set value in Board for the current square */
   Board[x][y] = 1;
 
-  corvoAttano();
+  corvoAttano(event);
 };
 
 var throneDrop = function(event) {
   event.preventDefault();
-  corvoAttano();
+  corvoAttano(event);
 };
 
 /* Add Event Listeners to Thrones */

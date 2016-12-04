@@ -22,6 +22,7 @@ body {
 
 div#board .ui.grid .row {
   padding: 0;
+  max-height: 70px;
 }
 
 .throne {
@@ -42,12 +43,14 @@ div#board .ui.grid .row {
 
 div.square {
   display: table-cell;
+  vertical-align: middle;
   width: 70px;
   height: 70px;
   background: red;
   border-radius: 1px;
   padding: 10px;
   position: relative;
+  box-sizing:border-box;
 }
 
 .overlay-dark-square {
@@ -60,18 +63,20 @@ div.square {
 
 .threatened-square {
   background: #e73827 !important;
-  background: -moz-radial-gradient(center, ellipse cover,  #e73827 0%, #f02f17 29%, #f6290c 63%, #f16f5c 64%, #f85032 100%) !important;
-  background: -webkit-radial-gradient(center, ellipse cover,  #e73827 0%,#f02f17 29%,#f6290c 63%,#f16f5c 64%,#f85032 100%) !important;
-  background: radial-gradient(ellipse at center,  #e73827 0%,#f02f17 29%,#f6290c 63%,#f16f5c 64%,#f85032 100%) !important;
+  background: -moz-radial-gradient(center, circle cover,  #e73827 0%, #f02f17 29%, #f6290c 63%, #f16f5c 64%, #f85032 100%) !important;
+  background: -webkit-radial-gradient(center, circle cover,  #e73827 0%,#f02f17 29%,#f6290c 63%,#f16f5c 64%,#f85032 100%) !important;
+  background: radial-gradient(circle at center,  #e73827 0%,#f02f17 29%,#f6290c 63%,#f16f5c 64%,#f85032 100%) !important;
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e73827', endColorstr='#f85032',GradientType=1 ) !important;
 }
 
 .even-row {
   min-width: 560px;
+  max-height: 70px;
 }
 
 .odd-row {
   min-width: 560px;
+  max-height: 70px;
 }
 
 .odd-row .square:nth-child(even) {

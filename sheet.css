@@ -39,6 +39,7 @@ div#board .ui.grid .row {
   height: 50px;
   z-index: 10;
   position: relative;
+  cursor: move;
 }
 
 div.square {
